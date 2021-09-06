@@ -22,9 +22,28 @@ function inArray(arr, el) {
 
 var numeriRandom = [];
 
-for (var i = 0; i < 5; i++){
-    numeriRandom.push(numeroRandom(1, 20));
-};
+//for (var i = 0; i < 5; i++){
+//    numeriRandom.push(numeroRandom(1, 20));
+//};
+
+for (var i = 0; i < 5; i++) {
+    var numeri = (numeroRandom(1, 20));
+    var check = numeriRandom.includes(numeri);
+
+    if (check == false) {
+        numeriRandom.push(numeri);
+
+    } else {
+        while(check == true){
+            numeri = (numeroRandom(1, 20));
+            check = numeriRandom.includes(numeri);
+            if(check == false){
+                numeriRandom.push(numeri);
+            }
+        }
+    }
+}
+
 
 var visioneNumeri = alert(`Ricordati questi numeri ${numeriRandom}`);
 
@@ -40,6 +59,10 @@ setTimeout(
     for (var i = 0; i < numeriRandom.length; i++){
         var sceltaUtente = parseInt(prompt("Inserisci uno dei numeri"));
 
+        while(isNaN(sceltaUtente)){
+            var sceltaUtente = parseInt(prompt("Non hai inserito un numero!"));
+        }
+
         numeriUtente.push(sceltaUtente);
 
         if (numeriRandom.includes(numeriUtente[i])){
@@ -51,7 +74,7 @@ setTimeout(
     }
 
     alert(`Hai indovinato ${numeriIndovinati.length} numeri che sono: ${numeriIndovinati}`);
-}, 2000);
+}, 30000);
 
 
 
